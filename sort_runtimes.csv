@@ -1,0 +1,17 @@
+sort_type,data_size,run_time
+Bucket Sort,1000,660110
+Count Sort,1000,9455660
+Bucket Sort,2000,1397050
+Count Sort,2000,11599710
+Bucket Sort,4000,1539740
+Count Sort,4000,32086350
+Bucket Sort,8000,2596290
+Count Sort,8000,10479340
+Bucket Sort,16000,5293540
+Count Sort,16000,17169160
+Bucket Sort,32000,6073660
+Count Sort,32000,23842910
+Bucket Sort,64000,10384800
+Count Sort,64000,26514210
+Bucket Sort,128000,27228160
+Count Sort,128000,44119990

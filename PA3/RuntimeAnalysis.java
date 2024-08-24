@@ -52,9 +52,10 @@ public class RuntimeAnalysis {
             ArrayList<Integer> largeList = generateArrayList(LARGE_INPUT_SIZES[i]);
             ArrayList<Integer> smallList = generateArrayList(SMALL_INPUT_SIZES[i]);
 
-            timings.add(measureAndPrintSortingTime("Bucket Sort", largeList));
-            timings.add(measureAndPrintSortingTime("Count Sort", largeList));
+            timings.add(measureAndPrintSortingTime("Bucket Sort", smallList));
+            timings.add(measureAndPrintSortingTime("Count Sort", smallList));
         }
+        System.out.println("Timings list: " + timings);
         writeToCSV(timings);
     }
 
@@ -66,7 +67,7 @@ public class RuntimeAnalysis {
     public static ArrayList<Integer> generateArrayList(int size) {
         ArrayList<Integer> arr = new ArrayList<>();
         for (int i = 0; i < size; i++) {
-            arr.add((int) (Math.random() * 1000));
+            arr.add((int) (Math.random() * 10000000));
         }
         return arr;
     }
@@ -113,21 +114,19 @@ public class RuntimeAnalysis {
      *
      * @param timings execution time results
      */
-    public static void writeToCSV(ArrayList<String> timings){
+    public static void writeToCSV(ArrayList<String> timings) {
         String fileName = "sort_runtimes.csv";
-        try {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileName))) {
             StringBuilder csvContent = new StringBuilder();
             csvContent.append("sort_type,data_size,run_time\n");
-            for (String timing : timings){
+            for (String timing : timings) {
                 csvContent.append(timing).append("\n");
             }
-            FileWriter fileWriter = new FileWriter(fileName);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(csvContent.toString());
-            bufferedWriter.close();
             System.out.println("Data has been written to the file.");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }
